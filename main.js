@@ -1,16 +1,13 @@
-// Local Storage
-localStorage.setItem("name","Rohan");
-localStorage.removeItem("name");
+let myObj = {
+    name: "Ram",
+    age : 24
+};
 
-//session Storage
-sessionStorage.setItem("name", "Dilip")
-sessionStorage.setItem("name", "Ravi")
-sessionStorage.setItem("Name", "Ram")
-sessionStorage.removeItem("name")
+let myObj_serilizd = JSON.stringify(myObj);
+console.log(myObj_serilizd);
 
-// Cookie 
+localStorage.setItem("myObj", myObj_serilizd)
+console.log(localStorage)
 
-document.cookie = "name = Ram; expires=" + new Date(9999,0,1).toUTCString();
-document.cookie = "name = Dilip; expires=" + new Date(9999,0,1).toUTCString();
-
-console.log(document.cookie)
+let demyObj_serilizd = JSON.parse(localStorage.getItem("myObj"));
+console.log(demyObj_serilizd);
