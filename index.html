@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>JS For Beginners</title>
+    <title>Small JS Porject</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <header>
-      <h1>JS For Beginners</h1>
+      <h1>Booking App</h1>
     </header>
 
     <section class="container">
@@ -45,18 +45,15 @@
                 const parentNode = document.getElementById('listOfUsers');
                 const childHTML = `<li id=${user.email}> ${user.name} - ${user.email}
             <button onclick=deleteUser('${user.email}')> Delete User </button>
-          <button  onclick=editUserDetails('${user.email}','${user.name}')>Edit User </button>
-                                     </li>`
+          <button  onclick=editUserDetails('${user.email}')>Edit User </button> </li>`
 
                 parentNode.innerHTML = parentNode.innerHTML + childHTML;
             }
 
 
-            function editUserDetails(emailId, name, phonenumber){
-
+            function editUserDetails(emailId, name){
                document.getElementById('email').value = emailId;
-              document.getElementById('username').value = name;
-              document.getElementById('phonenumber').value =phonenumber;
+              document.getElementById('name').value = name;
 
              deleteUser(emailId)
 }
