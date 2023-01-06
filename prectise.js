@@ -1,59 +1,24 @@
-const posts = [
-
-  {title:"post one",body : "this is post one"},
-
-  {title:"post two",body : "this is post two"}
-
-];
-function getPost(){
+const Promise1 = new Promise((resolve,reject)=>{
   setTimeout(()=>{
-      let output = ""
-      posts.forEach((post)=>{
-        output += `<li>${post.title}</li>`
-      })
-      document.body.innerHTML = output;
-  },3000)
-}
-function createPost(post){
-  return new Promise((resolve,reject)=>{
+  console.log('solve your problem')
+  resolve(10);
+  },1000)
+  });
+  const Promise2 = new Promise((resolve,reject)=>{
       setTimeout(()=>{
-         posts.push(post);
-      const error = false;
-      if(!error){
-          resolve();
-      }else{
-          reject(`error: something went wrong`);
-      }
-      },1000)
-  })
- }
- function deletePost(){
-  return new Promise((resolve,reject)=>{
-      setTimeout(()=>{
-          posts.pop();
-          if(posts.length > 0){
-              resolve();
-          }else{
-              reject("Array is empty now")
-          }
-      },1000)
-  })
-}
-createPost({title:"post three",body:"this is post three"})
-.then(()=>{
-  getPost()
-  deletePost().then(()=>{
-  getPost();
-  deletePost().then(()=>{
-  getPost();
-  deletePost().then(()=>{
-  getPost();
-  deletePost().then(()=>{})
-  .catch((err)=>{
-      console.log('Inside catch block',err)
-  })
-  }).catch((err)=>{})
-})
-  })   
-  })
-.catch(err => console.log(arr))
+      console.log('2nd problem has failed')
+      reject("failed");
+      },2000)
+      });
+      const Promise3 = new Promise((resolve,reject)=>{
+          setTimeout(()=>{
+          console.log('solve your 3rd problem')
+          resolve(30);
+          },3000)
+          });
+  
+          Promise.all([Promise1,Promise2,Promise3]).then((result)=>{
+              console.log(`results: ${result}`);
+              }).catch((error)=>{
+                  console.log(`errors: ${error}`);
+                  });
