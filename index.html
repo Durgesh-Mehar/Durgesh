@@ -4,75 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Small JS Porject</title>
-    <link rel="stylesheet" href="style.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <title>Axios Crash Course</title>
   </head>
   <body>
-    <header>
-      <h1>Booking App</h1>
-    </header>
+    <div class="container my-5">
+      <div class="text-center">
+        <h1 class="display-4 text-center mb-3">Axios Crash Course</h1>
+        <button class="btn btn-primary my-3" id="get">GET</button>
+        <button class="btn btn-info" id="post">POST</button>
+        <button class="btn btn-warning" id="update">PUT/PATCH</button>
+        <button class="btn btn-danger" id="delete">DELETE</button>
+        <button class="btn btn-secondary" id="sim">Sim Requests</button>
+        <button class="btn btn-secondary" id="headers">
+          Custom Headers
+        </button>
+        <button class="btn btn-secondary" id="transform">
+          Transform
+        </button>
+        <button class="btn btn-secondary" id="error">
+          Error Handling
+        </button>
+        <button class="btn btn-secondary" id="cancel">
+          Cancel
+        </button>
+      </div>
+      <hr />
+      <div id="res"></div>
+    </div>
 
-    <section class="container">
-      <form id="my-form" onsubmit="saveToLocalStorage(event)">
-        <h1>Add User</h1>
-        <div class="msg"></div>
-        <div>
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="username">
-        </div>
-        <div>
-          <label for="email">Email:</label>
-          <input type="text" id="email" name="emailId">
-        </div>
-        <input class="btn" type="submit" value="Submit">
-      </form>
-      <ul id="listOfUsers"></ul>
-    </section>
-    <script>
-    function saveToLocalStorage(event){
-      event.preventDefault();
-      const name = event.target.username.value;
-      const email= event.target.emailId.value;
-
-      let  obj= {
-      name,
-      email 
-  }
-  localStorage.setItem(obj.email,JSON.stringify(obj))
-  showNewUserOnScreen(obj)
-  }; 
-  function showNewUserOnScreen(user){
-                const parentNode = document.getElementById('listOfUsers');
-                const childHTML = `<li id=${user.email}> ${user.name} - ${user.email}
-            <button onclick=deleteUser('${user.email}')> Delete User </button>
-          <button  onclick=editUserDetails('${user.email}')>Edit User </button> </li>`
-
-                parentNode.innerHTML = parentNode.innerHTML + childHTML;
-            }
-
-
-            function editUserDetails(emailId, name){
-               document.getElementById('email').value = emailId;
-              document.getElementById('name').value = name;
-
-             deleteUser(emailId)
-}
-
-            // deleteUser('abc@gmail.com')
-
-            function deleteUser(emailId){
-                console.log(emailId)
-                localStorage.removeItem(emailId);
-                removeUserFromScreen(emailId);
-
-            }
-
-            function removeUserFromScreen(emailId){
-                const parentNode = document.getElementById('listOfUsers');
-                const childNodeToBeDeleted = document.getElementById(emailId);
-
-                parentNode.removeChild(childNodeToBeDeleted)
-            }
-  </script>
- </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="main.js"></script>
+  </body>
 </html>
