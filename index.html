@@ -22,81 +22,13 @@
         </div>
         <div>
           <label for="email">Email:</label>
-          <input type="text" id="email" name="emailId">
+          <input type="text" id="email" name="Id">
         </div>
         <input class="btn" type="submit" value="Submit">
       </form>
       <ul id="listOfUsers"></ul>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
     </section>
-    <script>
-    function saveToLocalStorage(event){
-      event.preventDefault();
-      const name = event.target.username.value;
-      const email= event.target.emailId.value;
-
-      let  obj= {
-      name,
-      email 
-  }
-  axios.post("https://crudcrud.com/api/57d33382265c4203874b69f3e756c450/appointmentData", obj)
-    .then((responce) => {
-      showNewUserOnScreen(responce.data)
-      console.log(responce)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-
-  }; 
-  
-  window.addEventListener("DOMContentLoaded", () => {
-   const data =  axios.get("https://crudcrud.com/api/57d33382265c4203874b69f3e756c450/appointmentData")
-    .then((res)=>{ 
-      for(let i=0;i<res.data.length;i++){
-      showNewUserOnScreen(res.data[i])
-    }
-        })
-    .catch((err)=>{console.log(err)})
- 
-     console.log(data)
-})
-
-   //localStorage.setItem(obj.email,JSON.stringify(obj))
-  //showNewUserOnScreen(obj)
-
-  function showNewUserOnScreen(user){
-                const parentNode = document.getElementById('listOfUsers');
-                const childHTML = `<li id=${user.email}> ${user.name} - ${user.email}
-            <button onclick=deleteUser('${user.email}')> Delete User </button>
-          <button  onclick=editUserDetails('${user.email}')>Edit User </button> </li>`
-
-                parentNode.innerHTML = parentNode.innerHTML + childHTML;
-            }
-
-
-            function editUserDetails(emailId, name){
-               document.getElementById('email').value = emailId;
-              document.getElementById('name').value = name;
-
-             deleteUser(emailId)
-}
-
-            // deleteUser('abc@gmail.com')
-
-            function deleteUser(emailId){
-                console.log(emailId)
-                localStorage.removeItem(emailId);
-                removeUserFromScreen(emailId);
-
-            }
-
-            function removeUserFromScreen(emailId){
-                const parentNode = document.getElementById('listOfUsers');
-                const childNodeToBeDeleted = document.getElementById(emailId);
-
-                parentNode.removeChild(childNodeToBeDeleted)
-            }
-  </script>
+    <script src="crud.js"></script>
  </body>
 </html>
