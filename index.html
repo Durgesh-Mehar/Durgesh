@@ -47,9 +47,24 @@
     .catch((err) => {
       console.log(err)
     })
+
+  }; 
+  
+  window.addEventListener("DOMContentLoaded", () => {
+   const data =  axios.get("https://crudcrud.com/api/57d33382265c4203874b69f3e756c450/appointmentData")
+    .then((res)=>{ 
+      for(let i=0;i<res.data.length;i++){
+      showNewUserOnScreen(res.data[i])
+    }
+        })
+    .catch((err)=>{console.log(err)})
+ 
+     console.log(data)
+})
+
    //localStorage.setItem(obj.email,JSON.stringify(obj))
   //showNewUserOnScreen(obj)
-  }; 
+
   function showNewUserOnScreen(user){
                 const parentNode = document.getElementById('listOfUsers');
                 const childHTML = `<li id=${user.email}> ${user.name} - ${user.email}
